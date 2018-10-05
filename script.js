@@ -4,12 +4,12 @@ window.onload = function () {
         'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
         't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
-    var categories;
+    var categ;
     var chosenCategory;
     var getHint;
     var word;
     var guess;        
-    var geusses = [];
+    var guessLetter = [];
     var lives;      
     var counter;     
     var space;
@@ -40,11 +40,11 @@ window.onload = function () {
 
 
     var selectCat = function () {
-        if (chosenCategory === categories[0]) {
+        if (chosenCategory === categ[0]) {
             catagoryName.innerHTML = "Category: Sea Creatures";
-        } else if (chosenCategory === categories[1]) {
+        } else if (chosenCategory === categ[1]) {
             catagoryName.innerHTML = "Category: Underwater Films and Shows";
-        } else if (chosenCategory === categories[2]) {
+        } else if (chosenCategory === categ[2]) {
             catagoryName.innerHTML = "Category: World Oceans";
         }
     }
@@ -65,7 +65,7 @@ window.onload = function () {
                 guess.innerHTML = "_";
             }
 
-            geusses.push(guess);
+            guessLetter.push(guess);
             wordHolder.appendChild(correct);
             correct.appendChild(guess);
         }
@@ -77,8 +77,8 @@ window.onload = function () {
         if (lives < 1) {
             showLives.innerHTML = "You drowned in failure! Why don't you try again?";
         }
-        for (var i = 0; i < geusses.length; i++) {
-            if (counter + space === geusses.length) {
+        for (var i = 0; i < guessLetter.length; i++) {
+            if (counter + space === guessLetter.length) {
                 showLives.innerHTML = "You Win!!!";
             }
         }
@@ -116,7 +116,7 @@ window.onload = function () {
             this.onclick = null;
             for (var i = 0; i < word.length; i++) {
                 if (word[i] === geuss) {
-                    geusses[i].innerHTML = geuss;
+                    guessLetter[i].innerHTML = geuss;
                     counter += 1;
                 }
             }
@@ -134,19 +134,19 @@ window.onload = function () {
 
 
     play = function () {
-        categories = [
+        categ = [
             ["clownfish", "cichlid", "starfish", "orca", "squid", "bloodparrot", "dolphin", "plecostomus"],
             ["little-mermaid", "spongebob", "free-willy", "finding-nemo", "jaws"],
             ["atlantic", "pacific", "indian", "arctic", "southern"]
         ];
 
-        chosenCategory = categories[Math.floor(Math.random() * categories.length)];
+        chosenCategory = categ[Math.floor(Math.random() * categ.length)];
         word = chosenCategory[Math.floor(Math.random() * chosenCategory.length)];
         word = word.replace(/\s/g, "-");
         console.log(word);
         buttons();
 
-        geusses = [];
+        guessLetter = [];
         lives = 10;
         counter = 0;
         space = 0;
@@ -167,13 +167,13 @@ window.onload = function () {
             ["Home to walruses and bluefin tuna", "An ocean so vast that it covers more area than all the land masses combined", "Touches Asia, Africa, and Australia", "Smallest and shallowest of the world's five major oceans", "Surrounds Antarctica"]
         ];
 
-        var catagoryIndex = categories.indexOf(chosenCategory);
+        var catagoryIndex = categ.indexOf(chosenCategory);
         var hintIndex = chosenCategory.indexOf(word);
         showClue.innerHTML = "Hint: " + hints[catagoryIndex][hintIndex];
     };
 
 
-//    starts another game
+//    resets the game
     document.getElementById('reset').onclick = function () {
         correct.parentNode.removeChild(correct);
         letters.parentNode.removeChild(letters);
