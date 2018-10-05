@@ -84,14 +84,13 @@ window.onload = function () {
         }
     }
 
-    // Animate man
+ 
+
     var animate = function () {
         var drawMe = lives;
-        drawArray[drawMe]();
+
     }
 
-
-    // Hangman
     canvas = function () {
 
         myStickman = document.getElementById("stickman");
@@ -109,8 +108,7 @@ window.onload = function () {
         context.stroke();
     }
 
-    
-    // OnClick Function
+
     check = function () {
         list.onclick = function () {
             var geuss = (this.innerHTML);
@@ -134,7 +132,7 @@ window.onload = function () {
     }
 
 
-    // Play
+
     play = function () {
         categories = [
             ["clownfish", "cichlid", "starfish", "orca", "squid", "bloodparrot", "dolphin", "plecostomus"],
@@ -174,8 +172,8 @@ window.onload = function () {
         showClue.innerHTML = "Clue: " + hints[catagoryIndex][hintIndex];
     };
 
-    // Reset the game //
 
+//    starts another game
     document.getElementById('reset').onclick = function () {
         correct.parentNode.removeChild(correct);
         letters.parentNode.removeChild(letters);
